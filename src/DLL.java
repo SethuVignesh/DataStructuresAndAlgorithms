@@ -1,4 +1,4 @@
 public class DLL {
-    public boolean append(){}
-    public boolean delete(){}
+//    public boolean append(){}
+//    public boolean delete(){}
 }
