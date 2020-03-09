@@ -12,6 +12,7 @@ public class BinaryTree {
         int leftMax=getMax(root.left); // 6
         int rightMAx= getMax(root.right); // 7
         return Math.max(root.val,Math.max(leftMax,rightMAx));
+
     }
 //    public void insert() {
 //    }
