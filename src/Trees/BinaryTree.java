@@ -23,9 +23,17 @@ public class BinaryTree {
         return Math.max(leftHeight, rightHeight) + 1;
 
     }
-
     public boolean isLeaf(BNode root) {
         return root.left == null && root.right == null;
+    }
+
+    public void deleteTree(BNode root){
+        if(root==null) return ;
+        deleteTree(root.left);
+        deleteTree(root.right);
+        root.left=null;
+        root.right=null;
+
     }
 //    public void insert() {
 //    }
