@@ -1,6 +1,18 @@
 package Trees;
 
 public class BinaryTree {
+
+    public class BNode{
+        int val;
+        BNode left;
+        BNode right;
+    }
+    public int getMax(BNode root){
+        if(root==null) return 0;
+        int leftMax=getMax(root.left); // 6
+        int rightMAx= getMax(root.right); // 7
+        return Math.max(root.val,Math.max(leftMax,rightMAx));
+    }
 //    public void insert() {
 //    }
 //
