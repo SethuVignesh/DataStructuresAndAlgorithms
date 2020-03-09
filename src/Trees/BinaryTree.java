@@ -6,6 +6,10 @@ public class BinaryTree {
         int val;
         BNode left;
         BNode right;
+
+        public BNode(int val) {
+            this.val=val;
+        }
     }
 
     public int getMax(BNode root) {
@@ -34,6 +38,14 @@ public class BinaryTree {
         root.left=null;
         root.right=null;
 
+    }
+
+    public BNode copyTree(BNode root){
+        if (root ==null) return null;
+        BNode rootClone= new BNode(root.val);
+        rootClone.left=copyTree(root.left);
+        rootClone.right=copyTree(root.right);
+        return root;
     }
 //    public void insert() {
 //    }
