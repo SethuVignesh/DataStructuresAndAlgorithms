@@ -2,17 +2,36 @@ package Trees;
 
 public class BinaryTree {
 
-    public class BNode{
+    public class BNode {
         int val;
         BNode left;
         BNode right;
     }
-    public int getMax(BNode root){
-        if(root==null) return 0;
-        int leftMax=getMax(root.left); // 6
-        int rightMAx= getMax(root.right); // 7
-        return Math.max(root.val,Math.max(leftMax,rightMAx));
 
+    public int getMax(BNode root) {
+        if (root == null) return 0;
+        int leftMax = getMax(root.left); // 6
+        int rightMAx = getMax(root.right); // 7
+        return Math.max(root.val, Math.max(leftMax, rightMAx));
+
+    }
+
+    public int getHeight(BNode root) {
+
+        return getHeight(root);
+
+    }
+
+    public int getMaxHeight(BNode root) {
+        if (root == null) return 0;
+        int leftHeight = getMaxHeight(root.left);
+        int rightHeight = getMaxHeight(root.right);
+        return Math.max(leftHeight, rightHeight) + 1;
+
+    }
+
+    public boolean isLeaf(BNode root) {
+        return root.left == null && root.right == null;
     }
 //    public void insert() {
 //    }
