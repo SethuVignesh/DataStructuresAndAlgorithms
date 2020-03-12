@@ -1,14 +1,37 @@
 package Trees;
 
-public class BinaryTree {
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
 
-    public class BNode {
+public class BinaryTree {
+    public static void main(String[] args) {
+        BNode root = new BNode(1);
+        BNode node = new BNode(2);
+        root.left = node;
+        node = new BNode(3);
+        root.right = node;
+        node = new BNode(4);
+        root.left.left = node;
+        node = new BNode(5);
+        root.left.right = node;
+        node = new BNode(6);
+        root.right.left = node;
+        node = new BNode(7);
+        root.right.right = node;
+//        preOrderTraversal(root);
+//        inOrderTraversdal(root);
+        levelOrder(root);
+    }
+
+    public static class BNode {
         int val;
         BNode left;
         BNode right;
 
         public BNode(int val) {
-            this.val=val;
+            this.val = val;
         }
     }
 
@@ -27,25 +50,130 @@ public class BinaryTree {
         return Math.max(leftHeight, rightHeight) + 1;
 
     }
-    public boolean isLeaf(BNode root) {
-        return root.left == null && root.right == null;
-    }
 
-    public void deleteTree(BNode root){
-        if(root==null) return ;
+//    public boolean isLeaf(BNode root) {
+//        return root.left == null && root.right == null;
+//    }
+
+    public void deleteTree(BNode root) {
+        if (root == null) return;
         deleteTree(root.left);
         deleteTree(root.right);
-        root.left=null;
-        root.right=null;
+        root.left = null;
+        root.right = null;
 
     }
 
-    public BNode copyTree(BNode root){
-        if (root ==null) return null;
-        BNode rootClone= new BNode(root.val);
-        rootClone.left=copyTree(root.left);
-        rootClone.right=copyTree(root.right);
+    public BNode copyTree(BNode root) {
+        if (root == null) return null;
+        BNode rootClone = new BNode(root.val);
+        rootClone.left = copyTree(root.left);
+        rootClone.right = copyTree(root.right);
         return root;
+    }
+
+//    private static void preOrderTraversal(BNode node) {
+//        if (root == null) {
+//            return;
+//        }
+////        List<>
+//        Stack<BNode> stack = new Stack<BNode>();
+//
+//        BNode temp = root;
+//        stack.push(temp);
+//        while (stack.isEmpty() == false) {
+//
+//            if (temp.right != null) {
+//                stack.push(temp.right);
+//            }
+//
+//            if (temp.left != null) {
+//                stack.push(temp.left);
+//            }
+//            System.out.println(stack.peek().val);
+//            temp = stack.pop();
+//        }
+
+//    private static void preOrderTraversal(BNode node) {
+//        while (node == null) return;
+//        BNode temp = node;
+//        Stack<BNode> stack = new Stack();
+//        while (true) {
+//            while (temp != null) {
+//                System.out.println(temp.val);
+//                stack.push(temp);
+//                temp = temp.left;
+//            }
+//
+//            if (stack.isEmpty()) break;
+//            temp = stack.pop();
+//
+//            temp = temp.right;
+//        }
+//        Queue<BNode> queue= new LinkedList<>() ;
+//        queue.add(null);
+//        queue.
+//
+//    }
+
+    private static void levelOrder(BNode root) {
+        List<List<Integer>> list= new LinkedList();
+        List<Integer> innerlist= new LinkedList();
+        Queue<BNode> q = new LinkedList<BNode>();
+
+        q.add(root);
+        q.add(null);
+        BNode temp;
+        while (!q.isEmpty()) {
+            temp = q.remove();
+            if(temp==null ) {
+                if(q.peek()==null) break;
+                list.add(innerlist);
+                innerlist=new LinkedList();
+                q.add(null);
+                continue;
+            }
+            System.out.println(temp.val);
+            innerlist.add(temp.val);
+
+            if (temp.left != null) {
+                q.add(temp.left);
+            }
+
+            if (temp.right != null) {
+                q.add(temp.right);
+            }
+        }
+//            return list;
+
+    }
+
+    private static void inOrderTraversdal(BNode node) {
+        while (node == null) return;
+        BNode temp = node;
+        Stack<BNode> stack = new Stack();
+        while (true) {
+            while (temp != null) {
+                System.out.println(temp.val);
+                stack.push(temp);
+                temp = temp.left;
+            }
+
+            if (stack.isEmpty()) break;
+            temp = stack.pop();
+
+            temp = temp.right;
+        }
+    }
+
+    private boolean isLeaf(BNode node) {
+        if (node == null) return false;
+        if (node.left == null && node.right == null) return true;
+        return false;
+    }
+
+    public boolean contains(BNode root, int data) {
+        return false;
     }
 //    public void insert() {
 //    }
